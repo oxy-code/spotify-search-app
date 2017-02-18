@@ -1,0 +1,9 @@
+# avoid commiting the following folders and files
+  
+.tmp/
+.yo-rc.json
+  
+bower_components/
+dist/
+node_modules/
+src/assets/images/
