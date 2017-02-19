@@ -16,6 +16,11 @@
   "author": "Vel <velu_developer@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "jasmine": "^2.5.3"
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^4.2.0",
+    "jasmine": "^2.5.3",
+    "karma": "^1.4.1"
   }
 }

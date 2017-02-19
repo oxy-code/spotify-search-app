@@ -1,0 +1,28 @@
+{
+  "name": "ng1-init",
+  "description": "Angular1,Gulp,Karma stack followed the Jhonpapa's Angular Style Guide",
+  "main": "index.js",
+  "authors": [
+    "Vel <velu_developer@yahoo.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "gulp",
+    "karma",
+    "testing",
+    "angular1"
+  ],
+  "homepage": "https://github.com/oxy-code/ng1-init",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.2"
+  }
+}
