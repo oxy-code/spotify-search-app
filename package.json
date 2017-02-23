@@ -4,7 +4,8 @@
   "description": "Angular1,Gulp,Karma stack followed the Jhonpapa's Angular Style Guide",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp start"
   },
   "keywords": [
     "angular",
@@ -17,9 +18,11 @@
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "browser-sync-spa": "^1.0.3",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-inject": "^4.2.0",
+    "gulp-uglify": "^2.0.1",
     "jasmine": "^2.5.3",
     "karma": "^1.4.1"
   }
