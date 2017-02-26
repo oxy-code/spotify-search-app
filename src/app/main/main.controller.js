@@ -2,14 +2,13 @@
     'use strict';
 
     angular
-        .module('app.main')
+        .module('ng1-init')
         .controller('MainController', MainController);
 
     /* @ngInject */
     function MainController() {
         var vm = this;
-        vm.title = 'Controller';
-        console.log('page loaded')
+        //console.log('MainController')
 
         ////////////////
         

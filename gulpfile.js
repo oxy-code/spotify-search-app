@@ -26,10 +26,15 @@ var gulp 			= require('gulp'),
 	],
 	indexFile = './src/index.html';
 
+
 /**
  * CSS tasks
  */
-gulp.task('css:vendor', function(){
+ gulp.task('icons', function() {
+    return gulp.src('./bower_components/components-font-awesome/fonts/**.*')
+       	.pipe(gulp.dest('./dist/fonts'));
+ });
+gulp.task('css:vendor', ['icons'], function(){
 	gulp.src(mainBowerFiles('**/*.css'))
 		.pipe(sourcemaps.init())
 		.pipe(cleanCSS({compatibility: 'ie8'}, function(details){
@@ -48,7 +53,8 @@ gulp.task('css:app', function() {
 		}))
 		.pipe(concat('app.min.css'))
 		.pipe(sourcemaps.write('maps'))
-		.pipe(gulp.dest('dist/css'));
+		.pipe(gulp.dest('dist/css'))
+		.pipe(browserSync.stream());
 });
 
 /**
@@ -71,7 +77,7 @@ gulp.task('js:app', function() {
 		.pipe(ngAnnotate({remove: true, add: true, single_quotes: true}).on('error', function(Err){
 			console.log('[SyntaxError]', Err.message)
 		}))
-		.pipe(uglify({mangle: false}).on('error', function(err) {
+		.pipe(uglify({mangle: true}).on('error', function(err) {
 			console.log('[Error]', err.toString());
 		}))
 		.pipe(concat('app.min.js'))
@@ -132,15 +138,19 @@ gulp.task('build', function() {
 });
 
 gulp.task('browser-sync', function() {
-	browserSync.init(null, {
+	browserSync.init({
 		open: false,
 		server: {
 			baseDir: 'dist',
-		}
+		},
+		ui: false,
+		reloadDelay: 2000,
+		reloadOnRestart: true,
+		injectChanges: true // inject css changes
 	});
 });
 
-gulp.task('inject-reload:js', ['js:app'], function ()
+gulp.task('inject-reload:js', ['js:app', 'html'], function ()
 {
     browserSync.reload();
 });
@@ -150,7 +160,7 @@ gulp.task('inject-reload:css', ['css:app'], function ()
     browserSync.reload();
 });
 
-gulp.task('inject-reload:html', ['html:app'], function ()
+gulp.task('inject-reload:html', ['html'], function ()
 {
     browserSync.reload();
 });
