@@ -1,5 +1,5 @@
 {
-  "name": "ng1-init",
+  "name": "spotify-search-app",
   "version": "1.0.0",
   "description": "Angular1,Gulp,Karma stack followed the Jhonpapa's Angular Style Guide",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "gulp test",
     "start": "gulp start"
   },
-  "repository": "https://github.com/oxy-code/ng1-init",
+  "repository": "https://github.com/oxy-code/spotify-search-app",
   "keywords": [
     "angular",
     "gulp",

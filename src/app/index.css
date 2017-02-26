@@ -1,2 +1,25 @@
 body {
 }
+.footer{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}
+.footer p{
+	text-align: center;
+	font-size: 10px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 0.7px;
+}
+.footer p a{
+	text-decoration: none;
+	font-weight: 500;
+	color: #999999;
+}
+.error-toast .md-toast-content{
+	background-color: #F44336 !important;
+}
+.error-toast .md-toast-content .md-toast-text{
+	font-size:16px;
+}

@@ -1,4 +1,6 @@
 <div id="app-home">
-	<p class="title">{{vm.title}}</p>
-	<p class="version">v{{vm.version}}</p>
+	<div ng-if="!vm.results.length">
+		<p class="title">{{vm.title}}</p>
+		<p class="version">v{{vm.version}}</p>
+	</div>
 </div>

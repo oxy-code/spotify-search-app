@@ -1,7 +1,12 @@
-<div id="app-toolbar">
-	<md-button ng-disabled="true" class="md-raised md-primary">@oxy-code</md-button>
+<div id="app-toolbar" layout="row" layout-align="space-between center">
+	<md-button ng-disabled="true" class="md-raised md-primary">Spotify</md-button>
+	<md-input-container md-no-float class="md-block search-input">
+		<input ng-model="vm.query" type="text" placeholder="Search for an Artist or Album"
+			ng-keyup="vm.search($event, vm.query)">
+		<md-icon md-font-icon="fa fa-search" style="display:inline-block;" ng-click="vm.search($event, vm.query)"></md-icon>
+	</md-input-container>
 	<md-button 
-		class="md-raised md-primary align-right"
+		class="md-raised md-primary"
 		ng-href="https://github.com/oxy-code/ng1-init" target="_blank">
 		<md-icon md-font-icon="fa fa-github"></md-icon> Download
 	</md-button>

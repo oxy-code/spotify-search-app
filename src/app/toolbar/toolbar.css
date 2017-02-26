@@ -1,8 +1,16 @@
 #app-toolbar {
     margin-top: 7px;
+    margin-right: 10px;
     margin-left: 10px;
 }
-#app-toolbar .align-right{
-    float: right;
-    margin-right: 16px;
+#app-toolbar .search-input{
+    width: 65%;
+    margin: 0px;
+    min-height: 17px !important;
+    height: 30px;
+}
+#app-toolbar .search-input input[type="text"]{
+	font-weight: 300;
+	font-size: 17px;
+	font-style: italic;
 }

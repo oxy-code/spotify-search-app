@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider){
+    function config($stateProvider, msApiProvider){
     	$stateProvider.state('app.home', {
     		url: '/',
     		views: {
@@ -16,5 +16,8 @@
     			}
     		}
     	});
+
+        // msApi
+        msApiProvider.register('spotify', ['https://api.spotify.com/v1/search?q=:q&type=:type']);
     }
 })();

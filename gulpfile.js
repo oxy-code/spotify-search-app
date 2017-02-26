@@ -157,7 +157,7 @@ gulp.task('inject-reload:js', ['js:app', 'html'], function ()
 
 gulp.task('inject-reload:css', ['css:app'], function ()
 {
-    browserSync.reload();
+    //browserSync.reload();
 });
 
 gulp.task('inject-reload:html', ['html'], function ()

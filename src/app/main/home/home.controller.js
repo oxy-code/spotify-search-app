@@ -6,13 +6,18 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController() {
+    function HomeController($rootScope) {
         var vm = this;
-        vm.title = 'Angular1 Starter Kit';
+        vm.title = 'Music Search App';
         vm.version = '0.1';
-        //console.log('HomeController');
+        vm.results = [];
 
         ////////////////
 
+        $rootScope.$on('RESULTS.FOUND', resultsFound);
+
+        function resultsFound(event, data){
+            console.log(data)
+        }
     }
 })();
