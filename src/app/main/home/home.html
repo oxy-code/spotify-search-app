@@ -1,6 +1,35 @@
 <div id="app-home">
-	<div ng-if="!vm.results.length">
+	<div ng-if="!vm.results.$resolved">
 		<p class="title">{{vm.title}}</p>
+		<md-icon md-font-icon="fa fa-spotify" style="font-size: 70px;display: block;text-align: center;"></md-icon>
 		<p class="version">v{{vm.version}}</p>
+	</div>
+	<div ng-if="vm.results.$resolved" class="p-20">
+		<div id="album-container">
+			<h3>Albums</h3>
+			<md-divider></md-divider>
+			<div layout="row">
+				<md-card ng-repeat="album in vm.results.albums.items">
+					<img ng-src="{{album.images[0].url || 'http://placehold.it/350x150'}}" class="md-card-image" alt="Washed Out" ng-attr-width="{{album.images[0].width}}" ng-attr-height="{{album.images[0].height}}">
+					<md-card-title>
+						<md-card-title-text>
+							<span class="md-headline">{{album.name || 'album removed'}}</span>
+							<span class="md-subhead">{{album.album_type}}</span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-content>
+						<h4>Available Markets:</h4>
+						<ul><li ng-repeat="country_code in album.available_markets">{{country_code}}</li></ul>
+					</md-card-content>
+					<md-card-actions layout="row" layout-align="end center">
+						<md-button>For Detail</md-button>
+					</md-card-actions>
+				</md-card>
+			</div>
+		</div>
+		<div id="artist-container">
+			<h3>Artists</h3>
+			<md-divider></md-divider>
+		</div>
 	</div>
 </div>

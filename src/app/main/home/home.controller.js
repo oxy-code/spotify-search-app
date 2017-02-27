@@ -6,18 +6,21 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($rootScope) {
+    function HomeController($rootScope, $scope) {
         var vm = this;
         vm.title = 'Music Search App';
         vm.version = '0.1';
-        vm.results = [];
+        vm.results = {};
 
         ////////////////
 
         $rootScope.$on('RESULTS.FOUND', resultsFound);
 
         function resultsFound(event, data){
-            console.log(data)
+            //$scope.$evalAsync(function(){
+                vm.results = data;
+                console.log(data)
+            //});
         }
     }
 })();
