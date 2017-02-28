@@ -18,6 +18,28 @@
     display: inline-block;
 }
 
+#app-home md-grid-list md-grid-tile:active{
+  outline: 0;
+}
+#app-home md-grid-list md-grid-tile{
+  transition: all .2s ease-in-out;
+}
+#app-home md-grid-list md-grid-tile:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#app-home md-sidenav md-content{
+  max-height: 160px;
+  overflow: auto;
+}
+@media (min-width: 600px){
+  #app-home md-sidenav{
+    top: 0em;
+    max-width:900px;
+    width: 800px; 
+  }
+}
+
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {

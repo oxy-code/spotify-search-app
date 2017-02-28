@@ -169,5 +169,4 @@ gulp.task('start', ['browser-sync'], function() {
 	gulp.watch(['./src/**/*.css'], ['inject-reload:css']);
 	gulp.watch(['./src/**/*.js'], ['inject-reload:js']);
 	gulp.watch(['./src/app/**/*.html'], ['inject-reload:html']);
-	return;
 });

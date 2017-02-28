@@ -6,7 +6,7 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($rootScope, $scope, $timeout) {
+    function HomeController($rootScope, $scope, $timeout, msApi, $mdSidenav) {
         var vm = this;
         vm.title = 'Music Search App';
         vm.version = '0.1';
@@ -16,6 +16,8 @@
         vm.resultsCountAsString = resultsCountAsString;
         vm.prev = prev;
         vm.next = next;
+        vm.showAlbumDetail = showAlbumDetail;
+        vm.closeSideNav = closeSideNav;
 
         /** Event Listner to catch the event RESULTS.FOUND from the ToolbarController */
         $rootScope.$on("RESULTS.FOUND", resultsFound);
@@ -26,8 +28,8 @@
          * from $rootScope
          */
         function resultsFound(event, data){
-            angular.merge(vm.results, data);
-            console.log(vm.results)
+            angular.extend(vm.results, data);
+            //console.log(vm.results)
             $timeout(function(){
                 $rootScope.loadingProgress = false;
             });
@@ -60,5 +62,27 @@
             };
             $rootScope.$emit("QUERY.NEXT.RESULTS", requestObj);
         }
+
+        function showAlbumDetail(albumID){
+            openSideNav('album-detail');
+            msApi.request('spotify.albums@get', {id: albumID}, successCb, failureCb);
+
+            function successCb(data){
+                console.log(data);
+            }
+
+            function failureCb(err){
+                console.log(err);
+            }
+        }
+
+        function openSideNav(componentId){
+            $mdSidenav(componentId).open();
+        }
+
+        function closeSideNav(componentId){
+            $mdSidenav(componentId).close();
+        }
+
     }
 })();

@@ -17,12 +17,12 @@
                 q: query || '',
                 type: qtype || 'album,artist'
             };
-        	return msApi.request('spotify@get', params);
+        	return msApi.request('spotify.search@get', params);
         }
 
         function customRequest(queryParams) {
             queryParams.type = queryParams.type.substring(0, queryParams.type.length - 1);
-            return msApi.request('spotify@get', queryParams);
+            return msApi.request('spotify.search@get', queryParams);
         }
     }
 })();

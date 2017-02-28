@@ -18,6 +18,9 @@
     	});
 
         // msApi
-        msApiProvider.register('spotify', ['https://api.spotify.com/v1/search']);
+        msApiProvider.setBaseUrl('https://api.spotify.com');
+        msApiProvider.register('spotify.search', ['/v1/search']);
+        msApiProvider.register('spotify.artists', ['/v1/artists/:id']);
+        msApiProvider.register('spotify.albums', ['/v1/albums/:id']);
     }
 })();
