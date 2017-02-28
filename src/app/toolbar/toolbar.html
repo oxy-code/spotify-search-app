@@ -1,15 +1,19 @@
+<md-progress-linear ng-if="$root.loadingProgress" md-mode="indeterminate" class="loadingProgress"></md-progress-linear>
 <div id="app-toolbar" layout="row" layout-align="space-between center">
+
 	<md-button ng-disabled="true" class="md-primary">
 		<md-icon md-font-icon="fa fa-spotify" style="font-size: 40px;"></md-icon>&nbsp;Spotify
 	</md-button>
+
 	<md-input-container md-no-float class="md-block search-input">
 		<input ng-model="vm.query" type="text" placeholder="Search for an Artist or Album"
-			ng-keyup="vm.search($event, vm.query)">
+			ng-keyup="vm.search($event)">
 		<md-icon md-font-icon="fa fa-search" style="display:inline-block;" ng-click="vm.search($event, vm.query)"></md-icon>
 	</md-input-container>
+
 	<md-button 
 		class="md-raised md-primary"
 		ng-href="https://github.com/oxy-code/ng1-init" target="_blank">
-		<md-icon md-font-icon="fa fa-github"></md-icon> Download
+		<md-icon md-font-icon="fa fa-github" style="font-size: 33px;"></md-icon>&nbsp;Source&nbsp;
 	</md-button>
 </div>

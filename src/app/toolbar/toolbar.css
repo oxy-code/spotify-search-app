@@ -14,3 +14,7 @@
 	font-size: 17px;
 	font-style: italic;
 }
+#app-toolbar .loadingProgress{
+    position: absolute;
+    top:0px;
+}

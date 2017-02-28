@@ -1,35 +1,62 @@
 <div id="app-home">
 	<div ng-if="!vm.results.$resolved">
 		<p class="title">{{vm.title}}</p>
-		<md-icon md-font-icon="fa fa-spotify" style="font-size: 70px;display: block;text-align: center;"></md-icon>
 		<p class="version">v{{vm.version}}</p>
 	</div>
 	<div ng-if="vm.results.$resolved" class="p-20">
-		<div id="album-container">
-			<h3>Albums</h3>
-			<md-divider></md-divider>
-			<div layout="row">
-				<md-card ng-repeat="album in vm.results.albums.items">
-					<img ng-src="{{album.images[0].url || 'http://placehold.it/350x150'}}" class="md-card-image" alt="Washed Out" ng-attr-width="{{album.images[0].width}}" ng-attr-height="{{album.images[0].height}}">
-					<md-card-title>
-						<md-card-title-text>
-							<span class="md-headline">{{album.name || 'album removed'}}</span>
-							<span class="md-subhead">{{album.album_type}}</span>
-						</md-card-title-text>
-					</md-card-title>
-					<md-card-content>
-						<h4>Available Markets:</h4>
-						<ul><li ng-repeat="country_code in album.available_markets">{{country_code}}</li></ul>
-					</md-card-content>
-					<md-card-actions layout="row" layout-align="end center">
-						<md-button>For Detail</md-button>
-					</md-card-actions>
-				</md-card>
+		<div id="album-container" class="mb-20">
+			<span class="heading-2 pr-20">Albums</span>
+			<div class="paginator" layout="row" ng-if="vm.results.albums.items">
+				<md-button class="button-prev md-icon-button" aria-label="prev" ng-click="vm.prev('albums');" ng-disabled="!!!vm.results.albums.previous">
+					<md-icon md-font-icon="fa fa-caret-left"></md-icon>
+				</md-button>
+				<span class="sub-text-sm">{{ vm.resultsCountAsString('albums') }}</span>
+				<md-button class="button-next md-icon-button" aria-label="next" ng-click="vm.next('albums');" ng-disabled="!!!vm.results.albums.next">
+					<md-icon md-font-icon="fa fa-caret-right"></md-icon>
+				</md-button>
 			</div>
-		</div>
-		<div id="artist-container">
-			<h3>Artists</h3>
 			<md-divider></md-divider>
+			<md-grid-list style="background-color:#A52A2A;"
+				md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+		        md-row-height-gt-md="1:1" md-row-height="2:2"
+		        md-gutter="12px" md-gutter-gt-sm="8px" ng-if="vm.results.albums.items">
+
+				<md-grid-tile class="animate-repeat" ng-repeat="album in vm.results.albums.items | orderBy:'name'"
+					md-rowspan="1"
+					md-colspan="1"
+					md-colspan-sm="1"
+					md-colspan-xs="1" >
+					<img ng-src="{{album.images[0].url || 'http://placehold.it/350x150'}}" class="md-avatar" alt="Album cover" width="160px">
+					<md-grid-tile-footer><h3>{{album.name || 'album removed'}}</h3></md-grid-tile-footer>
+				</md-grid-tile>
+			</md-grid-list>
+		</div>
+		<div id="artist-container" class="mb-20">
+			<span class="heading-2 pr-20">Artists</span>
+			<div class="paginator" layout="row" ng-if="vm.results.artists.items">
+				<md-button class="button-prev md-icon-button" aria-label="prev" ng-click="vm.prev('artists');" ng-disabled="!!!vm.results.artists.previous">
+					<md-icon md-font-icon="fa fa-caret-left"></md-icon>
+				</md-button>
+				<span class="sub-text-sm">{{ vm.resultsCountAsString('artists') }}</span>
+				<md-button class="button-next md-icon-button" aria-label="next" ng-click="vm.next('artists');" ng-disabled="!!!vm.results.artists.next">
+					<md-icon md-font-icon="fa fa-caret-right"></md-icon>
+				</md-button>
+			</div>
+			<md-divider></md-divider>
+			<md-grid-list style="background-color:#B21532;"
+				md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+				md-row-height-gt-md="1:1" md-row-height="3:3"
+				md-gutter="1px" md-gutter-gt-sm="4px" ng-if="vm.results.artists.items">
+
+				<md-grid-tile class="animate-repeat" ng-repeat="artist in vm.results.artists.items | orderBy:'name'"
+					md-rowspan="1"
+					md-colspan="1"
+					md-colspan-sm="1"
+					md-colspan-xs="1" >
+					<img ng-src="{{artist.images[0].url || 'http://placehold.it/350x150'}}" class="md-avatar" alt="artist cover" width="160px">
+					<md-grid-tile-footer><h3>{{artist.name || 'artist removed'}}</h3></md-grid-tile-footer>
+				</md-grid-tile>
+			</md-grid-list>
 		</div>
 	</div>
 </div>

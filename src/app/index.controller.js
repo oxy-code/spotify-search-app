@@ -10,7 +10,6 @@
     /* @ngInject */
     function IndexController($scope) {
         var vm = this;
-        //console.log('IndexController')
 
         ////////////////
 
