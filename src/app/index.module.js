@@ -8,7 +8,6 @@
             'app.core',
             'app.toolbar',
             'app.navigation',
-            // include your modules
             'app.home'
         ]);
 })();

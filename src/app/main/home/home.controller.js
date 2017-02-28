@@ -26,7 +26,7 @@
          * from $rootScope
          */
         function resultsFound(event, data){
-            angular.extend(vm.results, data);
+            angular.merge(vm.results, data);
             console.log(vm.results)
             $timeout(function(){
                 $rootScope.loadingProgress = false;
