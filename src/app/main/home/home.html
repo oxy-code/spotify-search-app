@@ -27,15 +27,12 @@
 					md-colspan="1"
 					md-colspan-sm="1"
 					md-colspan-xs="1"
-					ng-click="vm.showAlbumDetail(album.id)" >
+					ng-click="vm.showAlbumDetail($event, album.id)" >
 					<img ng-src="{{album.images[0].url || 'http://placehold.it/350x150'}}" class="md-avatar" alt="Album cover" width="160px">
 					<md-grid-tile-footer><h3>{{album.name || 'album removed'}}</h3></md-grid-tile-footer>
 				</md-grid-tile>
 			</md-grid-list>
 		</div>
-		<md-sidenav class="md-sidenav-left" ng-if="vm.results.albums.items" ng-include="'app/main/home/album.detail.html'" 
-			md-component-id="album-detail" md-whiteframe="4" flex>
-		</md-sidenav>
 
 		<!-- Artists -->
 		<div id="artist-container" class="mb-20">
@@ -59,14 +56,12 @@
 					md-rowspan="1"
 					md-colspan="1"
 					md-colspan-sm="1"
-					md-colspan-xs="1" >
+					md-colspan-xs="1"
+					ng-click="vm.showArtistDetail($event, artist.id)" >
 					<img ng-src="{{artist.images[0].url || 'http://placehold.it/350x150'}}" class="md-avatar" alt="artist cover" width="160px">
 					<md-grid-tile-footer><h3>{{artist.name || 'artist removed'}}</h3></md-grid-tile-footer>
 				</md-grid-tile>
 			</md-grid-list>
 		</div>
-		<md-sidenav class="md-sidenav-right" ng-if="vm.results.artists.items" ng-include="'app/main/home/artist.detail.html'" 
-			md-component-id="artist-detail" md-disable-backdrop md-whiteframe="4">
-		</md-sidenav>
 	</div>
 </div>

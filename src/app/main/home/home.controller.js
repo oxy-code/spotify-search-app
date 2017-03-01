@@ -6,7 +6,7 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($rootScope, $scope, $timeout, msApi, $mdSidenav) {
+    function HomeController($rootScope, $scope, $timeout, msApi, $mdDialog) {
         var vm = this;
         vm.title = 'Music Search App';
         vm.version = '0.1';
@@ -17,7 +17,7 @@
         vm.prev = prev;
         vm.next = next;
         vm.showAlbumDetail = showAlbumDetail;
-        vm.closeSideNav = closeSideNav;
+        vm.showArtistDetail = showArtistDetail;
 
         /** Event Listner to catch the event RESULTS.FOUND from the ToolbarController */
         $rootScope.$on("RESULTS.FOUND", resultsFound);
@@ -63,25 +63,36 @@
             $rootScope.$emit("QUERY.NEXT.RESULTS", requestObj);
         }
 
-        function showAlbumDetail(albumID){
-            openSideNav('album-detail');
-            msApi.request('spotify.albums@get', {id: albumID}, successCb, failureCb);
-
-            function successCb(data){
-                console.log(data);
-            }
-
-            function failureCb(err){
-                console.log(err);
-            }
+        function showAlbumDetail(ev, albumID){
+            $mdDialog.show({
+                controller: 'AlbumDialogController',
+                controllerAs: 'vm',
+                templateUrl: 'app/main/home/dialogs/album.detail.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                    id: albumID
+                },
+                bindToController: true
+            })
+            .then(angular.noop, angular.noop);
         }
 
-        function openSideNav(componentId){
-            $mdSidenav(componentId).open();
-        }
-
-        function closeSideNav(componentId){
-            $mdSidenav(componentId).close();
+        function showArtistDetail(ev, artistID){
+            $mdDialog.show({
+                controller: 'ArtistDialogController',
+                controllerAs: 'vm',
+                templateUrl: 'app/main/home/dialogs/artist.detail.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                    id: artistID
+                },
+                bindToController: true
+            })
+            .then(angular.noop, angular.noop);
         }
 
     }

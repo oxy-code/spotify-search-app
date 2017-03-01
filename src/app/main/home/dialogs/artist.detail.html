@@ -1,0 +1,34 @@
+<md-dialog aria-label="Artist detail" flex id="artist-mdDialog">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{(vm.artist.name ? vm.artist.name + ' (Artist)' : '') || 'Please wait..'}}</h2>
+			<span flex></span>
+		    <md-button class="md-icon-button" ng-href="{{vm.artist.external_urls['spotify']}}" target="_blank">
+		        <md-icon md-font-icon="fa fa-external-link" aria-label="External link"></md-icon>
+		        <md-tooltip>Open in Spotify ({{vm.artist.name}})</md-tooltip>
+		    </md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content>
+		<div class="md-dialog-content">
+			<md-progress-circular md-mode="indeterminate" ng-if="!vm.artist.$resolved"></md-progress-circular>
+			<div ng-if="vm.artist.$resolved" layout="row">
+				<div>
+					<img ng-if="vm.artist.images[0].url" ng-src="{{vm.artist.images[0].url}}"/>
+				</div>
+				<div class="pl-20" style="font-weight: 300;">
+					<h3>Popularity :{{ vm.artist.popularity }}</h3>
+					<h3>Followers :{{ vm.artist.followers['total'] }}</h3>
+					<h3>Genres</h3>
+					<ul style="list-style:none;">
+						<li ng-repeat="g in vm.artist.genres">{{g}}</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="vm.close()" class="md-primary">Close</md-button>
+	</md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,72 @@
+<md-dialog aria-label="Album detail" flex id="album-mdDialog">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{(vm.album.name ? vm.album.name + ' (Album)' : '') || 'Please wait..'}}</h2>
+			<span flex></span>
+		    <md-button class="md-icon-button" ng-href="{{vm.album.external_urls['spotify']}}" target="_blank">
+		        <md-icon md-font-icon="fa fa-external-link" aria-label="External link"></md-icon>
+		        <md-tooltip>Open in Spotify ({{vm.album.name}})</md-tooltip>
+		    </md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content>
+		<div class="md-dialog-content">
+			<md-progress-circular md-mode="indeterminate" ng-if="!vm.album.$resolved"></md-progress-circular>
+			<div ng-if="vm.album.$resolved" layout="row">
+				<div>
+					<img ng-if="vm.album.images[0].url" ng-src="{{vm.album.images[0].url}}"/>
+					<h3>Tracks ({{vm.album.tracks.total}})</h3>
+					<table class="tracks-list">
+						<thead>
+							<tr><th>#</th><th>Title</th><th>Sample</th><th>Open in Spotify</th></tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="t in vm.album.tracks.items">
+								<td>{{t.track_number}}</td>
+								<td>{{t.name}}</td>
+								<td>
+									<md-button class="md-icon-button" ng-href="{{t.preview_url}}" target="_blank">
+										<md-icon md-font-icon="fa fa-play"></md-icon>
+									</md-button>
+								</td>
+								<td>
+									<md-button class="md-icon-button" ng-href="{{t.external_urls['spotify']}}" target="_blank">
+										<md-icon md-font-icon="fa fa-external-link"></md-icon>
+									</md-button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="pl-20" style="font-weight: 300;">
+					<h3>Popularity :{{ vm.album.popularity }}</h3>
+					<h3>Album Type :{{ vm.album.album_type }}</h3>
+					<h3>Artists</h3>
+					<ul>
+						<li ng-repeat="ar in vm.album.artists">
+							<a href="{{ar.external_urls['spotify']}}" target="_blank">{{ar.name}}</a>
+						</li>
+					</ul>
+					<h3>Genres</h3>
+					<ul>
+						<li ng-repeat="g in vm.album.genres">{{g}}</li>
+					</ul>
+					<h3>Available Markets</h3>
+					<ul class="countries-list">
+						<li ng-repeat="country_code in vm.album.available_markets">
+							<img ng-src="/assets/flags/{{country_code | lowercase}}.png" alt="{{country_code}}" title="{{country_code}}"/>
+						</li>
+					</ul>
+					<h3>Copyrights</h3>
+					<ul>
+						<li ng-repeat="copy in vm.album.copyrights">({{copy.type}}) {{copy.text}}</li>
+					</ul>
+					<h3>Release: {{vm.album.release_date | date}}</h3>
+				</div>
+			</div>
+		</div>
+	</md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="vm.close()" class="md-primary">Close</md-button>
+	</md-dialog-actions>
+</md-dialog>

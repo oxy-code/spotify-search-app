@@ -1,0 +1,26 @@
+md-dialog-content {
+	background-color: #EEEEEE;
+}
+#album-mdDialog ul {
+	list-style: none;
+}
+#album-mdDialog .tracks-list{
+	border-collapse: collapse;
+	width: 100%;
+	font-weight: 300;
+}
+#album-mdDialog .tracks-list thead tr{
+	border-bottom: 1px solid #EEEEEE;
+}
+#album-mdDialog .tracks-list td{
+	text-align: center;
+}
+#album-mdDialog .countries-list{
+	display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+#album-mdDialog .countries-list li{
+	float: left;
+	margin-right: 10px;
+}
