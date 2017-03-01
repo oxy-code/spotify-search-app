@@ -40,7 +40,7 @@
             var offset = vm.results[type].offset;
             var limit = vm.results[type].limit;
             var total = vm.results[type].total;
-            return (total) ? 'Showing ' + (offset + 1) + ' - ' + (offset < total ? (offset || 1)* limit : total) + ' of ' + total : 'No '+type+' found';
+            return (total) ? 'Showing ' + (offset + 1) + ' - ' + ((offset + limit) < total ? (offset + limit || 1 * limit) : total) + ' of ' + total : 'No '+type+' found';
         }
 
         function prev(type){

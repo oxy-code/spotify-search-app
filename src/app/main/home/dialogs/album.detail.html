@@ -61,7 +61,10 @@
 					<ul>
 						<li ng-repeat="copy in vm.album.copyrights">({{copy.type}}) {{copy.text}}</li>
 					</ul>
-					<h3>Release: {{vm.album.release_date | date}}</h3>
+					<h3 ng-switch="vm.album.release_date_precision">
+						<span ng-switch-when="day">Release: {{vm.album.release_date | date}}</span>
+						<span ng-switch-default>Release: {{vm.album.release_date}}</span>
+					</h3>
 				</div>
 			</div>
 		</div>
