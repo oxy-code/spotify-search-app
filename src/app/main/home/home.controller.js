@@ -6,7 +6,7 @@
         .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function HomeController($rootScope, $scope, $timeout, msApi, $mdDialog) {
+    function HomeController($rootScope, $timeout, msApi, $mdDialog) {
         var vm = this;
         vm.title = 'Music Search App';
         vm.version = '0.1';
@@ -43,20 +43,32 @@
             return (total) ? 'Showing ' + (offset + 1) + ' - ' + ((offset + limit) < total ? (offset + limit || 1 * limit) : total) + ' of ' + total : 'No '+type+' found';
         }
 
+        /**
+         * It will emit an event and which is listened 
+         * from ToolbarController and then the ToolbarController will make
+         * a request to our service finally it will render the results
+         */
         function prev(type){
             $rootScope.loadingProgress = true;
+            var offset = vm.results[type].offset - vm.results[type].limit;
             var requestObj = {
-                offset: (vm.results[type].offset - vm.results[type].limit) || 0,
+                offset: offset > 0 ? offset : 0,
                 limit: vm.results[type].limit,
                 type: type
             };
             $rootScope.$emit("QUERY.PREV.RESULTS", requestObj);
         }
 
+        /**
+         * It will emit an event and which is listened 
+         * from ToolbarController and then the ToolbarController will make
+         * a request to our service finally it will render the results
+         */
         function next(type){
             $rootScope.loadingProgress = true;
+            var offset = vm.results[type].offset + vm.results[type].limit;
             var requestObj = {
-                offset: (vm.results[type].offset + vm.results[type].limit) || 0,
+                offset: offset > 0 ? offset : 0,
                 limit: vm.results[type].limit,
                 type: type
             };

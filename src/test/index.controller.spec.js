@@ -1,6 +1,6 @@
-describe('ng1-init TEST SUITE\n', function(){
-	describe('Testing IndexController\n', function(){
-		it('\tshould initialize the title in the scope\n', function(){
+describe('TEST SUITE', function(){
+	describe('Testing IndexController', function(){
+		it('should initialize the title in the scope', function(){
 			module('ng1-init');
 
 			var vm;
