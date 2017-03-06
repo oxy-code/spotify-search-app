@@ -1,6 +1,9 @@
 # spotify-search-app
 Simple search app using Angular 1 
 
+# Demo
+https://spotify-demo.herokuapp.com/
+
 # Installation
 ```sh
   $ npm install -g bower gulp-cli
